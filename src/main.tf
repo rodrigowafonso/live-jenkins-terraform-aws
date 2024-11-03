@@ -83,7 +83,7 @@ resource "aws_instance" "rwa_ec2_tj" {
   key_name = data.aws_key_pair.rwa_chave_tj.key_name
   subnet_id = aws_subnet.rwa_subnet_tj.id
   associate_public_ip_address = true
-  vpc_security_group_ids = [aws_security_group.allow_all.id]
+  vpc_security_group_ids = [aws_security_group.rwa_sg_tj.id]
 
   tags = {
     Name = "srv-pipeline-tj"
