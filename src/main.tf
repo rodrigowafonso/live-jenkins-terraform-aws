@@ -9,3 +9,8 @@ terraform {
       # Definir as variáveis de ambiente no Jenkins
     }
 }
+
+# Definindo o Provider
+provider "aws" {
+    region = var.aws_region
+}
