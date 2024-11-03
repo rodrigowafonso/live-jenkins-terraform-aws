@@ -29,11 +29,6 @@ pipeline {
                 }
             }
         }
-
-        stage ("Provisionando Website Wordpress") {
-            steps {
-
-            }
         }
     }
 }
