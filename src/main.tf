@@ -47,11 +47,6 @@ resource "aws_internet_gateway_attachment" "rwa_gw_vpc_tj" {
   vpc_id = aws_vpc.rwa_vpc_tj.id
 }
 
-# Provisionando a Route Table
-resource "aws_route_table" "rwa-rt-tj" {
-  vpc_id = aws_vpc.rwa_vpc_tj.id
-}
-
 resource "aws_route_table_association" "rwa_rt_atachar" {
   subnet_id = aws_subnet.rwa_subnet_tj.id
   route_table_id = aws_route_table.rwa-rt-tj.id
