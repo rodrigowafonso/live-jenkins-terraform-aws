@@ -20,7 +20,7 @@ variable "subnet_nome" {
 
 variable "subnet_cidr_block" {
   type = string
-  default = "192.168.0.1/24"
+  default = "192.168.1.0/24"
 }
 
 variable "subnet_availability_zone" {
