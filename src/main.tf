@@ -89,12 +89,12 @@ resource "aws_instance" "rwa_ec2_tj" {
 
 # Provisionando o Security Group
 resource "aws_security_group" "rwa_sg_tj" {
-  name = "rwa_sg_tj"
+  name = "allow_all"
   description = "Permitir o trafego de tudo"
   vpc_id = aws_vpc.rwa_vpc_tj.id
 
   tags = {
-    Name = "rwa_sg_tj"
+    Name = "allow_all"
   }
 }
 
