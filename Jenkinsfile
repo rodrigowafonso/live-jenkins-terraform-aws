@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     dir('src') {
-                        sh 'terraform init -backend-config="$AWS_NAME_BUCKET" -backend-config="$AWS_TERRAFORM_TFSTATE"'
+                        sh 'terraform init -backend-config="bucket=$AWS_NAME_BUCKET" -backend-config="key=$AWS_TERRAFORM_TFSTATE"'
                         sh 'terraform apply --auto-approve'
                     }
                 }
