@@ -4,14 +4,14 @@ pipeline {
 
     stages {
 
-        stage ("Checkout Source") {
+        stage ("Checkout Projeto GitHub RWA Terraform Jenkins AWS") {
             steps {
                 git url: 'https://github.com/rodrigowafonso/live-jenkins-terraform-aws.git', branch: 'main'
                 sh 'ls -la'
             }
         }
 
-        stage ("Execução da Projeto Terraform") {
+        stage ("Provisionando a Infraestrutura Instância EC2 AWS") {
             environment {
                 AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
                 AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
@@ -24,9 +24,15 @@ pipeline {
                     dir('src') {
                         sh 'terraform init -backend-config="bucket=$AWS_NAME_BUCKET" -backend-config="key=$AWS_TERRAFORM_TFSTATE"'
                         sh 'terraform apply --auto-approve'
-                        sh 'terraform destroy --auto-approve'
+                        //sh 'terraform destroy --auto-approve'
                     }
                 }
+            }
+        }
+
+        stage ("Provisionando Website Wordpress") {
+            steps {
+
             }
         }
     }
