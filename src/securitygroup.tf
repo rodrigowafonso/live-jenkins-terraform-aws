@@ -1,15 +1,4 @@
 
-# Provisionando o Security Group
-resource "aws_security_group" "rwa_sg_tj" {
-  name = "rwa_sg_tj"
-  description = "Permitir o trafego de tudo"
-  vpc_id = aws_vpc.rwa_vpc_tj.id
-
-  tags = {
-    Name = "rwa_sg_tj"
-  }
-}
-
 # Garantindo que o Inbound esteja liberado para todos
 resource "aws_security_group_rule" "rwa_sg_ingress_tj" {
   type = "ingress"
