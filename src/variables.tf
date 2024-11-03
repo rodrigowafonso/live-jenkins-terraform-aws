@@ -25,7 +25,7 @@ variable "subnet_cidr_block" {
 
 variable "subnet_availability_zone" {
   type = string
-  default = "us-aest-1a"
+  default = "us-east-1a"
 }
 
 variable "internet_gateway_nome" {
