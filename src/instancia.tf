@@ -11,6 +11,7 @@ resource "aws_instance" "rwa_ec2_tj" {
   subnet_id = aws_subnet.rwa_subnet_tj.id
   associate_public_ip_address = true
   vpc_security_group_ids = [aws_security_group.rwa_sg_tj.id]
+  user_data = file("./src/nginx/config-nginx.sh")
  
   tags = {
     Name = "srv-pipeline-tj"
