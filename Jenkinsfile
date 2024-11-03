@@ -22,6 +22,7 @@ pipeline {
             steps {
                 script {
                     dir('src') {
+                        sh 'terraform fmt'
                         sh 'terraform init -backend-config="bucket=$AWS_NAME_BUCKET" -backend-config="key=$AWS_TERRAFORM_TFSTATE"'
                         sh 'terraform apply --auto-approve'
                         //sh 'terraform destroy --auto-approve'
