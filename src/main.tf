@@ -47,12 +47,6 @@ resource "aws_internet_gateway_attachment" "rwa_gw_vpc_tj" {
   vpc_id = aws_vpc.rwa_vpc_tj.id
 }
 
-# Garantindo que a Tabela de Rota estaja associada a Subnet
-resource "aws_route_table_association" "rwa_rt_atachar" {
-  subnet_id = aws_subnet.rwa_subnet_tj.id
-  route_table_id = aws_route_table.rwa-rt-tj.id
-}
-
 # Provisionando a Route Table
 resource "aws_route_table" "rwa_rt_nome" {
   vpc_id = aws_vpc.rwa_vpc_tj.id
@@ -66,6 +60,13 @@ resource "aws_route_table" "rwa_rt_nome" {
     Name = var.route_table_nome
   }
 }
+
+# Garantindo que a Tabela de Rota estaja associada a Subnet
+resource "aws_route_table_association" "rwa_rt_atachar" {
+  subnet_id = aws_subnet.rwa_subnet_tj.id
+  route_table_id = aws_route_table.rwa_rt_nome.id
+}
+
 
 # Garantindo que será utilizado a Key Pair Devops Rodrigo Afonso
 data "aws_key_pair" "rwa_chave_tj" {
