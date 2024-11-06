@@ -25,29 +25,10 @@ pipeline {
                         sh 'terraform fmt'
                         sh 'terraform init -backend-config="bucket=$AWS_NAME_BUCKET" -backend-config="key=$AWS_TERRAFORM_TFSTATE"'
                         sh 'terraform apply --auto-approve'
-                        sh 'terraform destroy --auto-approve'
+                        //sh 'terraform destroy --auto-approve'
                     }
                 }
             }
         }
-
-        stage ("Instalando o Webserver NGINX") {
-            environment {
-                SSH_PRIVATE_KEY = credentials('SSH_PRIVATE_KEY')
-                SSH_USER = credentials('SSH_USER')
-            }
-            steps {
-                script {
-                    withCredentials([sshUserPrivatekey(credentialsId: 'ssh-key', keyFileVariable: 'SSH_PRIVATE_KEY', usernameVariable: 'SSH_USER' )]) {
-                        dir('./src/nginx') {
-                            sh 'ssh -i $SSH_PRIVATE_KEY $SSH_USER@'
-                            sh 'sudo chmod g+x ./config-nginx'
-                            sh './config-nginx.sh'
-                        }
-                    }
-                }
-            }
-        }
-
     }
 }

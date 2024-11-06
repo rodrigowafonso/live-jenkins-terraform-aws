@@ -25,6 +25,12 @@ resource "aws_instance" "rwa_ec2_tj" {
         "sudo systemctl status nginx"
     ]
     
+    connection {
+      type = "ssh"
+      user = "ubuntu"
+      private_key = file("/mnt/d/ansible/keys/key_devops_rodrigoafonso.pem")
+      host = self.public_ip
+    }
   }
   
   }
