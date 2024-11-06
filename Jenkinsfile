@@ -31,16 +31,23 @@ pipeline {
             }
         }
 
-        // stage ("Instalando o Webserver NGINX") {
-        //     steps {
-        //         script {
-        //             dir('./src/nginx') {
-        //                 sh 'sudo chmod g+x ./config-nginx'
-        //                 sh './config-nginx.sh'
-        //             }
-        //         }
-        //     }
-        // }
+        stage ("Instalando o Webserver NGINX") {
+            environment {
+                SSH_PRIVATE_KEY = credentials('SSH_PRIVATE_KEY')
+                SSH_USER = credentials('SSH_USER')
+            }
+            steps {
+                script {
+                    withCredentials([sshUserPrivatekey(credentialsId: 'ssh-key', keyFileVariable: 'SSH_PRIVATE_KEY', usernameVariable: 'SSH_USER' )]) {
+                        dir('./src/nginx') {
+                            sh 'ssh -i $SSH_PRIVATE_KEY $SSH_USER@'
+                            sh 'sudo chmod g+x ./config-nginx'
+                            sh './config-nginx.sh'
+                        }
+                    }
+                }
+            }
+        }
 
     }
 }
