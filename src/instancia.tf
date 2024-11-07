@@ -16,21 +16,21 @@ resource "aws_instance" "rwa_ec2_tj" {
     Name = "srv-pipeline-tj"
   }
   
-  provisioner "remote-exec" {
-    inline = [ 
-        "sudo apt update -y",
-        "sudo apt install nginx -y",
-        "sudo systemctl start nginx",
-        "sudo systemctl enable nginx",
-    ]
+#   provisioner "remote-exec" {
+#     inline = [ 
+#         "sudo apt update -y",
+#         "sudo apt install nginx -y",
+#         "sudo systemctl start nginx",
+#         "sudo systemctl enable nginx",
+#     ]
     
-    connection {
-      type = "ssh"
-      user = "rwa_devops"
-      private_key = file("/home/rwa_devops/.ssh/key_devops_rodrigoafonso.pem")
-      host = self.public_ip
-    }
-  }
+#     connection {
+#       type = "ssh"
+#       user = "rwa_devops"
+#       private_key = file("/home/rwa_devops/.ssh/key_devops_rodrigoafonso.pem")
+#       host = self.public_ip
+#     }
+#   }
   
   }
 
