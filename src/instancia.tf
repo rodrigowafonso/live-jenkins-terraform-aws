@@ -26,7 +26,7 @@ resource "aws_instance" "rwa_ec2_tj" {
     
     connection {
       type = "ssh"
-      user = "ubuntu"
+      user = "rwa_devops"
       private_key = file("/home/rwa_devops/.ssh/key_devops_rodrigoafonso.pem")
       host = self.public_ip
     }
