@@ -22,7 +22,6 @@ resource "aws_instance" "rwa_ec2_tj" {
         "sudo apt install nginx -y",
         "sudo systemctl start nginx",
         "sudo systemctl enable nginx",
-        "sudo systemctl status nginx"
     ]
     
     connection {
